@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>F.A TEAM ELITE Agenda</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="text-center p-8">
+  <h1 class="text-3xl font-bold">F.A TEAM ELITE Agenda</h1>
+  <p>Suba o pacote completo para usar as funcionalidades.</p>
+</body>
+</html>
+admin_html = """<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin – Agendar Missões</title>
+  <script>
+    const senhaCorreta = "elite2025";
+    const senha = prompt("Área restrita. Digite a senha:");
+    if (senha !== senhaCorreta) {
+      alert("Senha incorreta! Acesso rejeitado.");
+      document.documentElement.innerHTML = ""; // limpa tudo
+      throw new Error("Acesso negado");
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#0a0e14] text-gray-100" style="background: url('bg-logo.png') no-repeat center center fixed; background-size: contain;">
+  
+  <header class="p-4 text-center bg-yellow-600 font-black">
+    <h1 class="text-2xl">Cadastrar Nova Missão</h1>
+  </header>
+  <main class="p-4 max-w-xl mx-auto">
+    <form id="missionForm" class="grid gap-4">
+      <input id="title" type="text" placeholder="Título da Missão" required class="p-2 rounded bg-[#1c2431]">
+      <input id="date" type="date" required class="p-2 rounded bg-[#1c2431]">
+      <input id="time" type="time" required class="p-2 rounded bg-[#1c2431]">
+      <input id="location" type="text" placeholder="Local" required class="p-2 rounded bg-[#1c2431]">
+      <input id="meetup" type="text" placeholder="Ponto de Encontro" required class="p-2 rounded bg-[#1c2431]">
+      <textarea id="mission" placeholder="Descrição da Missão" class="p-2 rounded bg-[#1c2431]"></textarea>
+      <button type="submit" class="bg-green-600 py-2 rounded font-bold">Salvar Missão</button>
+    </form>
+  </main>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    import { firebaseConfig } from "./firebaseConfig.js";
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const form = document.getElementById('missionForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = {
+        title: form.title.value,
+        date: form.date.value,
+        time: form.time.value,
+        location: form.location.value,
+        meetup: form.meetup.value,
+        mission: form.mission.value,
+        created: serverTimestamp()
+      };
+      await addDoc(collection(db, "games"), data);
+      alert('Missão cadastrada!');
+      form.reset();
+    });
+  </script>
+</body>
+</html>
