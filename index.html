@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>F.A TEAM ELITE – Missões Agendadas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#0a0e14] text-gray-100">
+  <header class="p-4 text-center bg-yellow-600 font-black">
+    <h1 class="text-2xl">F.A TEAM ELITE – Missões Agendadas</h1>
+  </header>
+
+  <main id="game-list" class="p-4 grid gap-6 lg:grid-cols-2"></main>
+
+  <!-- Modal -->
+  <div id="modal" class="fixed inset-0 hidden items-center justify-center bg-black/60">
+    <div class="bg-[#1c2431] p-6 rounded-xl w-80">
+      <h2 class="text-xl mb-4 font-bold">Confirmados</h2>
+      <ul id="attendees" class="space-y-1 max-h-64 overflow-y-auto"></ul>
+      <button id="closeModal" class="mt-4 w-full bg-yellow-600 py-2 rounded-lg font-bold">Fechar</button>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
